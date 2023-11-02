@@ -9,10 +9,12 @@ public class gameManager : MonoBehaviour
     public Text timeTxt;
     float time = 0.0f;
     public GameObject endTxt;
+    public GameObject nameTxt;
 
     public GameObject card;
     public GameObject firstCard;
     public GameObject secondCard;
+
 
     public static gameManager I;
 
@@ -60,19 +62,87 @@ public class gameManager : MonoBehaviour
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
 
+            nameTxt.SetActive(true);
+            Text matchName = nameTxt.GetComponent<Text>();
+
+            if (firstCardImage == "icon0" || firstCardImage == "cion0")
+            {
+                matchName.text = "Å©·Ò";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon1" || firstCardImage == "cion1")
+            {
+                matchName.text = "Ä¥ÆÇ";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon2" || firstCardImage == "cion2")
+            {
+                matchName.text = "ÆÄµµ";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon3" || firstCardImage == "cion3")
+            {
+                matchName.text = "LOL";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon4" || firstCardImage == "cion4")
+            {
+                matchName.text = "³«ÇÏ";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon5" || firstCardImage == "cion5")
+            {
+                matchName.text = "¸ÆÁÖ";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon6" || firstCardImage == "cion6")
+            {
+                matchName.text = "GIT";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon7" || firstCardImage == "cion7")
+            {
+                matchName.text = "¿©Çà";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon8" || firstCardImage == "cion8")
+            {
+                matchName.text = "½ºÆÄ¸£Å¸";
+                Invoke("collname", 2f);
+            }
+            else if (firstCardImage == "icon9" || firstCardImage == "cion9")
+            {
+                matchName.text = "Unity";
+                Invoke("collname", 2f);
+            }
+
             int cardsLeft = GameObject.Find("cards").transform.childCount;
             if (cardsLeft == 2)
             {
                 Invoke("EndTxtDleay", 1f);
             }
+            matchName.color = new Color(0f, 0f, 0f);
         }
         else
         {
+            nameTxt.SetActive(true);
+            Text matchName = nameTxt.GetComponent<Text>();
+            
+            matchName.text = "Æ²·È´Ù!";
+            matchName.color = new Color (1f,0f,0f);
+
             firstCard.GetComponent<card>().closeCard();
             secondCard.GetComponent<card>().closeCard();
+
+            Invoke("collname", 1.5f);
+
         }
         firstCard = null;
         secondCard = null;
+    }
+    void collname()
+    {
+        nameTxt.SetActive(false);
     }
     void EndTxtDleay()
     {
