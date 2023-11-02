@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,18 +21,10 @@ public class card : MonoBehaviour
 
     public void openCard()
     {
-        bool isOpen = true;
-
         anim.SetBool("isOpen", true);
-        if (isOpen == true)
-        {
-            Invoke("openDelay", 0.2f);
-        }
-        else
-        {
-            transform.Find("back").gameObject.SetActive(false);
-        }
-        
+        transform.Find("front").gameObject.SetActive(true);
+        transform.Find("back").gameObject.SetActive(false);
+ 
         if(gameManager.I.firstCard == null)
         {
             gameManager.I.firstCard = gameObject;
@@ -43,14 +36,9 @@ public class card : MonoBehaviour
         }
     }
 
-    public void openDelay()
-    {
-        transform.Find("front").gameObject.SetActive(true);
-    }
-
     public void destroyCard()
     {
-        Invoke("destoryCardInvoke", 1.3f);
+        Invoke("destoryCardInvoke", 1f);
     }
     void destoryCardInvoke()
     {
@@ -58,7 +46,7 @@ public class card : MonoBehaviour
     }
     public void closeCard()
     {
-        Invoke("closeCardInvoke", 1.5f);
+        Invoke("closeCardInvoke", 1.2f);
     }
 
     void closeCardInvoke()

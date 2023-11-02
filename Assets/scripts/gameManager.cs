@@ -8,6 +8,7 @@ public class gameManager : MonoBehaviour
 {
     public Text timeTxt;
     float time = 0.0f;
+    public GameObject endTxt;
 
     public GameObject card;
     public GameObject firstCard;
@@ -38,6 +39,8 @@ public class gameManager : MonoBehaviour
             string iconName = "icon" + cardimage[i].ToString();
             newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(iconName);
         }
+
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -56,6 +59,12 @@ public class gameManager : MonoBehaviour
         {
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
+
+            int cardsLeft = GameObject.Find("cards").transform.childCount;
+            if (cardsLeft == 2)
+            {
+                Invoke("EndTxtDleay", 1f);
+            }
         }
         else
         {
@@ -64,5 +73,10 @@ public class gameManager : MonoBehaviour
         }
         firstCard = null;
         secondCard = null;
+    }
+    void EndTxtDleay()
+    {
+        endTxt.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 }
