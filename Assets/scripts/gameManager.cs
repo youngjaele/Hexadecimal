@@ -8,6 +8,7 @@ public class gameManager : MonoBehaviour
 {
     public Text timeTxt;
     float time = 0.0f;
+    float limit = 40f;
     public GameObject endTxt;
     public GameObject nameTxt;
 
@@ -48,8 +49,23 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
+        limit -= Time.deltaTime;
+        if(limit <= 0)
+        {
+            Time.timeScale = 0f;
+            endTxt.SetActive(true);
+            limit = 0f;
+        }
+        else if (limit <= 30)
+        {
+            timeTxt.color = new Color(0f, 0f, 1f);
+        }
+        else if (limit <= 10)
+        {
+            timeTxt.color = new Color(255f, 0f, 0f);
+        }
+
+        timeTxt.text = limit.ToString("N2");
     }
 
     public void ismatched()
@@ -68,52 +84,52 @@ public class gameManager : MonoBehaviour
             if (firstCardImage == "icon0" || firstCardImage == "cion0")
             {
                 matchName.text = "Å©·Ò";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon1" || firstCardImage == "cion1")
             {
                 matchName.text = "Ä¥ÆÇ";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon2" || firstCardImage == "cion2")
             {
                 matchName.text = "ÆÄµµ";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon3" || firstCardImage == "cion3")
             {
                 matchName.text = "LOL";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon4" || firstCardImage == "cion4")
             {
                 matchName.text = "³«ÇÏ";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon5" || firstCardImage == "cion5")
             {
                 matchName.text = "¸ÆÁÖ";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon6" || firstCardImage == "cion6")
             {
                 matchName.text = "GIT";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon7" || firstCardImage == "cion7")
             {
                 matchName.text = "¿©Çà";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon8" || firstCardImage == "cion8")
             {
                 matchName.text = "½ºÆÄ¸£Å¸";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
             else if (firstCardImage == "icon9" || firstCardImage == "cion9")
             {
                 matchName.text = "Unity";
-                Invoke("collname", 2f);
+                Invoke("collname", 3f);
             }
 
             int cardsLeft = GameObject.Find("cards").transform.childCount;
