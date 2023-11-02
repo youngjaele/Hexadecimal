@@ -1,24 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class endTxt : MonoBehaviour
+public class audioManager : MonoBehaviour
 {
+    public AudioSource bgmSource;
+    public AudioClip bgmusic;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        bgmSource.clip = bgmusic;
+        bgmSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    public void reGame()
-    {
-        SceneManager.LoadScene("StartScene");
+        
     }
 }

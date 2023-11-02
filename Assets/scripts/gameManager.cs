@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using JetBrains.Annotations;
 
 public class gameManager : MonoBehaviour
 {
+    // 타이머, 텍스트
     public Text timeTxt;
     float time = 0.0f;
     float limit = 40f;
     public GameObject endTxt;
     public GameObject nameTxt;
 
+    // 카드
     public GameObject card;
     public GameObject firstCard;
     public GameObject secondCard;
 
+    // 소리
+    public AudioSource matchSource;
+    public AudioClip match;
 
     public static gameManager I;
 
@@ -42,32 +48,24 @@ public class gameManager : MonoBehaviour
             string iconName = "icon" + cardimage[i].ToString();
             newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(iconName);
         }
-
-        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
     void Update()
     {
         limit -= Time.deltaTime;
-        if(limit <= 0)
+        if (limit <= 0)
         {
             Time.timeScale = 0f;
             endTxt.SetActive(true);
             limit = 0f;
         }
-        else if (limit <= 30)
-        {
-            timeTxt.color = new Color(0f, 0f, 1f);
-        }
         else if (limit <= 10)
         {
             timeTxt.color = new Color(255f, 0f, 0f);
         }
-
         timeTxt.text = limit.ToString("N2");
     }
-
     public void ismatched()
     {
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
@@ -75,6 +73,8 @@ public class gameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
+            matchSource.PlayOneShot(match);
+
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
 
@@ -83,6 +83,7 @@ public class gameManager : MonoBehaviour
 
             if (firstCardImage == "icon0" || firstCardImage == "cion0")
             {
+
                 matchName.text = "크롬";
                 Invoke("collname", 3f);
             }
@@ -143,9 +144,9 @@ public class gameManager : MonoBehaviour
         {
             nameTxt.SetActive(true);
             Text matchName = nameTxt.GetComponent<Text>();
-            
+
             matchName.text = "틀렸다!";
-            matchName.color = new Color (1f,0f,0f);
+            matchName.color = new Color(1f, 0f, 0f);
 
             firstCard.GetComponent<card>().closeCard();
             secondCard.GetComponent<card>().closeCard();

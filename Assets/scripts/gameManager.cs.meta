@@ -5,7 +5,15 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - timeTxt: {instanceID: 0}
+  - endTxt: {instanceID: 0}
+  - nameTxt: {instanceID: 0}
   - card: {instanceID: 0}
+  - firstCard: {instanceID: 0}
+  - secondCard: {instanceID: 0}
+  - matchSource: {instanceID: 0}
+  - match: {instanceID: 0}
+  - timerSource: {instanceID: 0}
+  - timersound: {fileID: 8300000, guid: c5e2a73ad4706440f93bf05df0b465fe, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
